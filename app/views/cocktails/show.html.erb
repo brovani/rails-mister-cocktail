@@ -1,13 +1,13 @@
-<h2><%= @cocktail.name %></h2>
-<ul>
-<p> Please see below the doses needed for each ingredient:</p>
-<ul >
-<% @cocktail.doses.each do |dose| %>
-<li> <%= dose.description %> <%= dose.ingredient.name %><%= link_to "Remove", dose_path(dose), method: :delete, 
-data: { confirm: "Are you sure?" } %></li>
-<% end %>
-</ul>
+<h3>To prepare a perfect <%= @cocktail.name %>, you need :</h3>
+    
+    <% @cocktail.doses.each do |dose| %>
+      <div class="card-dose">
+      <%= dose.description %> <%= dose.ingredient.name %>
+        <%= link_to "Remove?", dose_path(dose), method: :delete,  data: { confirm: "Are you sure?" } %>
+      </div>
+    <% end %>
+
 <br>
-<%= link_to 'Add a new dose (ingredient/description pair) to this cocktail', new_cocktail_dose_path(@cocktail) %>
+<h5> If you want to change the cocktail dosing, click here: <%= link_to 'Make your changes', new_cocktail_dose_path(@cocktail) %> </h5>
 <br>
-<%= link_to 'Back', cocktails_path %>
+<%= link_to 'Back to cocktails list', cocktails_path %>
